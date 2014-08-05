@@ -1,0 +1,11 @@
+{
+    "require": {
+        "slim/slim": "2.*",
+        "jwilsson/spotify-web-api-php": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "WhatShouldIListenTo\\": "src/"
+        }
+    }
+}
