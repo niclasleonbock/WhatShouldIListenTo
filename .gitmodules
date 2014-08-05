@@ -1,0 +1,3 @@
+[submodule "app/days"]
+	path = app/days
+	url = https://github.com/niclasleonbock/wsilt-days.git
