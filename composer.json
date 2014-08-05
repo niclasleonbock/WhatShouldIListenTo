@@ -1,7 +1,6 @@
 {
     "require": {
-        "slim/slim": "2.*",
-        "jwilsson/spotify-web-api-php": "dev-master"
+        "slim/slim": "2.*"
     },
     "autoload": {
         "psr-4": {
