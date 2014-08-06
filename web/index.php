@@ -12,20 +12,26 @@ $app->error(function (Exception $exception) use ($app) {
 });
 
 $app->post('/github-update', function () use ($app) {
-    if ($app->request->headers['X-Hub-Signature'] != trim(file_get_contents('.webhook_secret')) {
-        return $app->halt(403, 'You shall not pass!');
+    $secret = trim(file_get_contents(__DIR__ . '/../.webhook_secret'));
+    $digest = hash_hmac('sha1', $app->request->getBody(), $secret);
+    $body   = $app->request->getBody();
+
+    if ($app->request->headers['X-Hub-Signature'] != 'sha1=' . $digest) {
+        return $app->halt(403, 'You shall not pass! ' . $digest);
     }
 
     try {
-        $payload = json_decode($_REQUEST['payload']);
+        $payload = json_decode($body);
     } catch(Exception $e) {
-        return $app->halt(500);
+        $app->halt(500, print_r($e, true));
     }
 
     if ('refs/heads/master' == $payload->ref) {
-        file_put_contents(__DIR__ . '/../github.log', print_r($payload, true), FILE_APPEND);
+        file_put_contents(__DIR__ . '/../app/github.log', print_r($payload, true), FILE_APPEND);
 
         shell_exec('cd ' . realpath(__DIR__ . '/../app/days') . ' && git pull');
+
+        return 'Days updated successfully!';
     }
 });
 
