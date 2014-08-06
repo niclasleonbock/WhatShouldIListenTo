@@ -11,6 +11,24 @@ $app->error(function (Exception $exception) use ($app) {
     $app->render('error.php');
 });
 
+$app->post('/github-update', function () use ($app) {
+    if ($app->request->headers['X-Hub-Signature'] != trim(file_get_contents('.webhook_secret')) {
+        return $app->halt(403, 'You shall not pass!');
+    }
+
+    try {
+        $payload = json_decode($_REQUEST['payload']);
+    } catch(Exception $e) {
+        return $app->halt(500);
+    }
+
+    if ('refs/heads/master' == $payload->ref) {
+        file_put_contents(__DIR__ . '/../github.log', print_r($payload, true), FILE_APPEND);
+
+        shell_exec('cd ' . realpath(__DIR__ . '/../app/days') . ' && git pull');
+    }
+});
+
 $app->get('/about', function () use ($app) {
     return $app->render('about.php');
 })->name('about');
