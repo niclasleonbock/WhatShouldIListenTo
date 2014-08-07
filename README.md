@@ -6,3 +6,6 @@ git clone --recursive https://github.com/niclasleonbock/WhatShouldIListenTo.git 
 ```
 
 > **Hint**: You'll need to set up the configuration for your webserver on your own.
+
+## Add Songs
+To add a song please contribute to https://github.com/niclasleonbock/wsilt-days.
