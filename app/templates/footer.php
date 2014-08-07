@@ -10,6 +10,7 @@
       <nav class="navbar navbar-right">
         <ul>
           <li><a href="<?php echo $app->urlFor('about') ?>">About</a></li>
+          <li><a href="<?php echo $app->urlFor('statistics') ?>">Statistics</a></li>
           <li><a href="https://github.com/niclasleonbock/wsilt-days">Add a Song</a></li>
           <li><a href="https://github.com/niclasleonbock/WhatShouldIListenTo">Contribute on Github</a></li>
         </ul>

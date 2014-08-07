@@ -23,7 +23,7 @@
               <ul>
                   <li><a href="<?php echo $app->urlFor('today') ?>">What should I listen to today?</a></li>
 
-                  <?php foreach ([ 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday' ] as $day) : ?>
+                  <?php foreach (weekdays() as $day) : ?>
                     <li><a href="<?php echo $app->urlFor('on', [ 'day' => $day ]) ?>">What should I listen to on <?php echo $day ?>?</a></li>
                   <?php endforeach ?>
               </ul>
@@ -35,7 +35,7 @@
               <ul>
                   <li><a href="<?php echo $app->urlFor('day', [ 'day' => 'today' ]) ?>">All songs for today</a></li>
 
-                  <?php foreach ([ 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday' ] as $day) : ?>
+                  <?php foreach (weekday() as $day) : ?>
                     <li><a href="<?php echo $app->urlFor('day', [ 'day' => $day ]) ?>">All songs for <?php echo $day ?></a></li>
                   <?php endforeach ?>
               </ul>
