@@ -26,6 +26,8 @@ class MainController extends BaseController
                 ->getSongs();
 
             $total += $days[$day]['count'] = count($days[$day]);
+
+            $days[$day]['name'] = $day;
         }
 
         usort($days, function ($a, $b) {

@@ -5,11 +5,6 @@ function weekdays($day = null)
     return [ 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday' ];
 }
 
-function weekday($index)
-{
-    return weekdays()[$index];
-}
-
 function app()
 {
     return Slim\Slim::getInstance();

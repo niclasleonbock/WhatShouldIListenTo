@@ -26,8 +26,8 @@
           <div class="unit-50">
             <nav class="nav">
               <ul>
-                  <?php foreach ($days as $day => $values) : ?>
-                    <li><a href="<?php echo $app->urlFor('day', [ 'day' => weekday($day) ]) ?>">We have <?php echo $values['count'] ?> songs for <?php echo weekday($day) ?></a></li>
+                  <?php foreach ($days as $rank => $day) : ?>
+                    <li><a href="<?php echo $app->urlFor('day', [ 'day' => $day['name'] ]) ?>">We have <?php echo $day['count'] ?> songs for <?php echo $day['name'] ?></a></li>
                   <?php endforeach ?>
               </ul>
             </nav>
@@ -45,8 +45,8 @@
 
         element: 'distribution',
         data: [
-          <?php foreach ($days as $day => $values) : ?>
-          { label: '<?php echo ucfirst(weekday($day)) ?>', value: '<?php echo $values['count'] ?>' },
+          <?php foreach ($days as $rank => $day) : ?>
+          { label: '<?php echo ucfirst($day['name']) ?>', value: '<?php echo $day['count'] ?>' },
           <?php endforeach ?>
         ],
         colors: [
