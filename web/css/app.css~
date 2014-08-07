@@ -46,17 +46,17 @@ footer#footer {
   font-size: 85%;
 }
 
+@media (max-width: 768px) {
+  footer#footer .text-left {
+    text-align: center;
+  }  
+}
+
 .love {
   color: red;
 }
 
 .text-left {
   text-align: left;
-}
-
-@media (max-width: 768px) {
-  footer#footer .text-left {
-    text-align: center;
-  }  
 }
 
