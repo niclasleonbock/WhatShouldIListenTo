@@ -41,4 +41,16 @@ strong {
   text-align: center;
 }
 
+footer#footer {
+  margin-top: 80px;
+  font-size: 85%;
+}
+
+.love {
+  color: red;
+}
+
+.text-left {
+  text-align: left;
+}
 

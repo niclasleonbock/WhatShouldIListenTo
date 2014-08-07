@@ -24,6 +24,8 @@
             </div>
           </div>
         <?php endforeach ?>
+
+        <?php $app->render('footer.php') ?>
       </div>
     </div>
 

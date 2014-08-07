@@ -9,7 +9,7 @@
     <div class="container">
       <div class="inner">
         <h2>About</h2>
-        <p>WSILT is a service with the purpose of telling you to what you could listen to based on the current (/today) or a given weekday (/on/:day). It uses Spotify to directly link to the according songs.</p>
+        <p>WSILT is a service with the purpose of telling you to what you could listen to based on the current (<code>/today</code>) or a given weekday (<code>/on/:day</code>). It uses Spotify to directly link to the according songs.</p>
         <p>You think WSILT is missing a specific song? No problem! You can contribute to the song database! Click <a href="https://github.com/niclasleonbock/wsilt-days">here</a> for more information.</p>
         <p>WSILT is an open source project. You can help improve it by contributing on <a href="https://github.com/niclasleonbock/WhatShouldIListenTo">GitHub</a>.</p>
 
@@ -42,6 +42,8 @@
             </nav>
           </div>
         </div>
+
+        <?php $app->render('footer.php') ?>
       </div>
     </div>
 

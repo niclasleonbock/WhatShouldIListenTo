@@ -35,7 +35,7 @@ class DayManager
         $this->day = $this->transformDay($day);
 
         if (!$this->isValidDay()) {
-            throw new Exception('Unknown day ' . $day . ', no meta file found.');
+            throw new Exception('Unknown day ' . $this->day . ', no meta file found.');
         }
 
         return $this;
