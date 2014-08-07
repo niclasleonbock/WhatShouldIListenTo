@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><?php echo $app->getName() ?></title>
+    <title>What should I listen to <?php echo $day_header ?>?</title>
 
     <?php $app->render('head.php') ?>
   </head>
