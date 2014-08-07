@@ -8,27 +8,42 @@ class GithubController extends BaseController
 {
     public function updateAction()
     {
-        $secret = trim(file_get_contents(__DIR__ . '/../.webhook_secret'));
-        $digest = hash_hmac('sha1', $this->request->getBody(), $secret);
-        $body   = $this->request->getBody();
-
-        if ($this->request->headers['X-Hub-Signature'] != 'sha1=' . $digest) {
+        if (!$this->validateRequest()) {
             return $this->halt(403, 'You shall not pass!');
         }
 
         try {
-            $payload = json_decode($body);
+            $payload = json_decode($this->request->getBody());
         } catch(Exception $exception) {
             $this->halt(500, print_r($exception, true));
         }
 
         if ('refs/heads/master' == $payload->ref) {
-            file_put_contents(__APP__ . '/github.log', print_r($payload, true), FILE_APPEND);
+            $this->logPayload($payload);
 
-            shell_exec('cd ' . realpath(__DIR__ . '/../app/days') . ' && git pull');
+            shell_exec('cd ' . realpath(__APP__ . '/days') . ' && git pull');
 
             return 'Days updated successfully!';
         }
+    }
+
+    protected function validateRequest()
+    {
+        $secret = trim(file_get_contents(__BASE__ . '/.webhook_secret'));
+        $digest = hash_hmac('sha1', $this->request->getBody(), $secret);
+        $body   = $this->request->getBody();
+
+        return $this->request->headers['X-Hub-Signature'] == 'sha1=' . $digest;
+    }
+
+    // I would love to use Slim's log writer,
+    // but it won't let me write to different files
+    // without big effort.
+    protected function logPayload($payload)
+    {
+        $payload = print_r($payload, true);
+
+        return file_put_contents(__APP__ . '/github.log', $payload, FILE_APPEND);
     }
 }
 

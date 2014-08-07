@@ -1,6 +1,7 @@
 <?php
-define('__APP__', __DIR__ . '/../app');
-define('__VENDOR__', __DIR__ . '/../vendor');
+define('__BASE__', __DIR__ . '/..');
+define('__APP__', __BASE__ . '/app');
+define('__VENDOR__', __BASE__ . '/vendor');
 
 include __VENDOR__ . '/autoload.php';
 

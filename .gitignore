@@ -1,6 +1,6 @@
 /vendor
 composer.lock
 /app/days
-/app/github.log
+/app/*.log
 */**.*~
 .webhook_secret
