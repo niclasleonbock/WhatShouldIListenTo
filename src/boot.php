@@ -15,5 +15,9 @@ $app->error(function (Exception $exception) use ($app) {
     $app->render('error.php');
 });
 
+$app->notFound(function () use ($app) {
+    $app->render('error.php');
+});
+
 return $app;
 

@@ -16,7 +16,8 @@ class DayController extends BaseController
 
         return $this->render('song.php', [
             'song'          => $song,
-            'day_header'    => $manager->getDayHeader(),
+            'day'           => $day,
+            'day_header'    => 'on ' . $day,
         ]);
     }
 
@@ -28,7 +29,7 @@ class DayController extends BaseController
 
         return $this->render('song.php', [
             'song'          => $song,
-            'day_header'    => 'today',
+            'day'           => 'today',
         ]);
     }
 
@@ -40,7 +41,7 @@ class DayController extends BaseController
 
         return $this->render('song.php', [
             'song'          => $song,
-            'day_header'    => 'tomorrow',
+            'day'           => 'tomorrow',
         ]);
     }
 }
