@@ -35,7 +35,7 @@
               <ul>
                   <li><a href="<?php echo $app->urlFor('day', [ 'day' => 'today' ]) ?>">All songs for today</a></li>
 
-                  <?php foreach (weekday() as $day) : ?>
+                  <?php foreach (weekdays() as $day) : ?>
                     <li><a href="<?php echo $app->urlFor('day', [ 'day' => $day ]) ?>">All songs for <?php echo $day ?></a></li>
                   <?php endforeach ?>
               </ul>
