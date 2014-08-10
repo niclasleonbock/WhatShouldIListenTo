@@ -11,8 +11,9 @@ class SongController extends BaseController
         $manager = $this->daymanager;
 
         if ('today' == $day) {
-            $day = new DateTime();
             $day_header = 'today';
+        } else if ('tomorrow' == $day) {
+            $day_header = 'tomorrow';
         }
 
         $songs = $manager

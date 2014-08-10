@@ -16,19 +16,31 @@ class DayController extends BaseController
 
         return $this->render('song.php', [
             'song'          => $song,
-            'day_header'    => 'on ' . $manager->getDay(),
+            'day_header'    => $manager->getDayHeader(),
         ]);
     }
 
     public function todayAction()
     {
         $song = $this->daymanager
-            ->setDay(new DateTime())
+            ->setDay('today')
             ->getRandomSong();
 
         return $this->render('song.php', [
             'song'          => $song,
             'day_header'    => 'today',
+        ]);
+    }
+
+    public function tomorrowAction()
+    {
+        $song = $this->daymanager
+            ->setDay('tomorrow')
+            ->getRandomSong();
+
+        return $this->render('song.php', [
+            'song'          => $song,
+            'day_header'    => 'tomorrow',
         ]);
     }
 }

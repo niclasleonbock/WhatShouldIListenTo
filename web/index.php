@@ -6,6 +6,7 @@ $app->get('/about', controller('MainController:aboutAction'))->name('about');
 $app->get('/statistics', controller('MainController:statisticsAction'))->name('statistics');
 
 $app->get('/today', controller('DayController:todayAction'))->name('today');
+$app->get('/tomorrow', controller('DayController:tomorrowAction'))->name('tomorrow');
 $app->get('/on/:day', controller('DayController:onAction'))->name('on');
 
 $app->get('/songs/for/:day', controller('SongController:forAction'))->name('day');

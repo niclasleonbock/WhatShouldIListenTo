@@ -57,6 +57,14 @@ class DayManager
             $day = new DateTime('Sunday +' . $day . ' days');
         }
 
+        if ('today' == $day) {
+            $day = new DateTime();
+        }
+
+        if ('tomorrow' == $day) {
+            $day = (new DateTime())->modify('+1 day');
+        }
+
         if ($day instanceof DateTime) {
             $day = $day->format('l');
         }
