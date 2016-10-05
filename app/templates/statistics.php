@@ -5,10 +5,7 @@
 
     <?php $app->render('head.php') ?>
 
-    <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.5.1.css">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-    <script src="http://cdn.oesmith.co.uk/morris-0.5.1.min.js"></script>
+    <script src="<?php echo $asset_path ?>js/Chart.min.js"></script>
   </head>
   <body>
     <div class="container">
@@ -20,7 +17,7 @@
 
         <div class="units-row">
 	      <div class="unit-50">
-            <div id="distribution" style="height: 300px;"></div>
+            <canvas id="distribution" height="300"></canvas>
           </div>
 
           <div class="unit-50">
@@ -41,18 +38,27 @@
     <?php $app->render('ribbon.php') ?>
 
     <script>
-      new Morris.Donut({
-
-        element: 'distribution',
-        data: [
-          <?php foreach ($days as $rank => $day) : ?>
-          { label: '<?php echo ucfirst($day['name']) ?>', value: '<?php echo $day['count'] ?>' },
-          <?php endforeach ?>
-        ],
-        colors: [
-          '#1abc9c', '#16a085', '#27ae60', '#2ecc71', '#34495e', '#3498db', '#2980b9',
-        ],
-      });
+        new Chart(document.getElementById("distribution"), {
+            type: 'polarArea',
+            data: {
+                labels: [<?php foreach ($days as $rank => $day) { echo '"' . ucfirst($day['name']) . '",'; } ?>],
+                datasets: [
+                    {
+                        label: "Songs",
+                        backgroundColor: [
+                            "#FF6384",
+                            "#4BC0C0",
+                            "#FFCE56",
+                            "#7f8c8d",
+                            "#36A2EB",
+                            "#9b59b6",
+                            "#e74c3c",
+                        ],
+                        data: [<?php foreach ($days as $rank => $day) { echo $day['count'] . ','; } ?>],
+                    },
+                ],
+            },
+        });
     </script>
   </body>
 </html>
