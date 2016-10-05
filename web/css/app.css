@@ -57,6 +57,10 @@ footer#footer {
 @media (max-width: 768px) {
   footer#footer .text-left {
     text-align: center;
-  }  
+  }
+
+  .container {
+    width: 90%;
+  }
 }
 
