@@ -21,13 +21,9 @@ class DayManager
         return $this;
     }
 
-    public function getPath($day = null)
+    public function getPath()
     {
-        if ($day) {
-            return $this->path . '/' . $day . '.json';
-        }
-
-        return $this->path;
+        return $this->path . '/' . $this->day . '.json';
     }
 
     public function setDay($day)
@@ -51,12 +47,8 @@ class DayManager
         return file_exists($this->getPath($this->day));
     }
 
-    public function transformDay($day)
+    protected function transformDay($day)
     {
-        if (is_integer($day)) {
-            $day = new DateTime('Sunday +' . $day . ' days');
-        }
-
         if ('today' == $day) {
             $day = new DateTime();
         }
@@ -65,15 +57,15 @@ class DayManager
             $day = (new DateTime())->modify('+1 day');
         }
 
-        if ($day instanceof DateTime) {
-            $day = $day->format('l');
+        if (is_string($day)) {
+            $day = new DateTime($day);
         }
 
-        if (!is_string($day)) {
-            throw new Exception('Weekday must be an instance of DateTime, a string or an integer between 1 and 7.');
+        if (!$day instanceof DateTime) {
+            throw new Exception('Cannot transformat day, most probably because of an invalid format.');
         }
 
-        return strtolower($day);
+        return strtolower($day->format('l'));
     }
 
     public function getSongs()
