@@ -12,7 +12,7 @@ class SongController extends BaseController
 
         if ('today' == $day) {
             $day_header = 'today';
-        } else if ('tomorrow' == $day) {
+        } elseif ('tomorrow' == $day) {
             $day_header = 'tomorrow';
         }
 
@@ -26,4 +26,3 @@ class SongController extends BaseController
         ]);
     }
 }
-

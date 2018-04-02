@@ -29,4 +29,3 @@ class Application extends Slim
         return rtrim($this->request()->getUrl(), '/') . '/';
     }
 }
-

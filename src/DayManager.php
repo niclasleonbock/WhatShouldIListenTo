@@ -83,4 +83,3 @@ class DayManager
         return $songs[$key];
     }
 }
-

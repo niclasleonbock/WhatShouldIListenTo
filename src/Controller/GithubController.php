@@ -14,7 +14,7 @@ class GithubController extends BaseController
 
         try {
             $payload = json_decode($this->request->getBody());
-        } catch(Exception $exception) {
+        } catch (Exception $exception) {
             $this->halt(500, print_r($exception, true));
         }
 
@@ -31,7 +31,6 @@ class GithubController extends BaseController
     {
         $secret = trim(file_get_contents(__BASE__ . '/.webhook_secret'));
         $digest = hash_hmac('sha1', $this->request->getBody(), $secret);
-        $body   = $this->request->getBody();
 
         return $this->request->headers['X-Hub-Signature'] == 'sha1=' . $digest;
     }
@@ -46,4 +45,3 @@ class GithubController extends BaseController
         return file_put_contents(__APP__ . '/github.log', $payload, FILE_APPEND);
     }
 }
-

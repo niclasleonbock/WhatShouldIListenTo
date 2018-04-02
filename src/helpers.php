@@ -25,4 +25,3 @@ function lastFm($artist, $song = null)
 
     return $url;
 }
-

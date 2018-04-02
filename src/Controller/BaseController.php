@@ -20,4 +20,3 @@ class BaseController
         return $this->app->{$key};
     }
 }
-
